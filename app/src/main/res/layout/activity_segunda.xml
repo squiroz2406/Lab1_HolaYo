@@ -11,4 +11,22 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tvContador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        android:layout_marginTop="24dp" />
+    <Button
+        android:id="@+id/btnSumar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_sumar" />
+    <EditText
+        android:id="@+id/etNotas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="@string/hint_notas"
+        android:inputType="textMultiLine" />
 </LinearLayout>

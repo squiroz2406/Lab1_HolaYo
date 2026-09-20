@@ -34,8 +34,15 @@ class MainActivity : AppCompatActivity() {
         val tvComida = findViewById<TextView>(R.id.tvComida)
         val tvBebida = findViewById<TextView>(R.id.tvBebida)
         val btnSaludar = findViewById<Button>(R.id.btnSaludar)
-
+        val btnIrSegunda = findViewById<Button>(R.id.btnIrSegunda)
         tvDato.text = perfil.dato
+
+
+        btnIrSegunda.setOnClickListener {
+            val intent = Intent(this, SegundaActivity::class.java)
+            intent.putExtra("nombre", perfil.apodo ?: perfil.nombre)
+            startActivity(intent)
+        }
 
         fun actualizarSaludo() {
             tvSaludo.text = if (saludoFormal)
@@ -69,12 +76,12 @@ class MainActivity : AppCompatActivity() {
             actualizarSaludo()
             mostrarDatosOpcionales()
         }
-        val btnIrSegunda = findViewById<Button>(R.id.btnIrSegunda)
         btnIrSegunda.setOnClickListener {
             val intent = Intent(this, SegundaActivity::class.java)
             intent.putExtra("nombre", perfil.apodo ?: perfil.nombre)
             startActivity(intent)
         }
+
     }
     override fun onStart() { super.onStart(); Log.d("VIDA", "Main → onStart") }
     override fun onResume() { super.onResume(); Log.d("VIDA", "Main → onResume")
