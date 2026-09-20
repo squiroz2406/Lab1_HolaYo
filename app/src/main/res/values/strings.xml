@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">HolaYo</string>
+    <string name="btn_saludar">Saludar distinto</string>
+</resources>
