@@ -1,6 +1,7 @@
 package com.example.holayo
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("VIDA", "Main → onCreate")
         setContentView(R.layout.activity_main)
 
         val tvSaludo = findViewById<TextView>(R.id.tvSaludo)
@@ -74,4 +76,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    override fun onStart() { super.onStart(); Log.d("VIDA", "Main → onStart") }
+    override fun onResume() { super.onResume(); Log.d("VIDA", "Main → onResume")
+    }
+    override fun onPause() { super.onPause(); Log.d("VIDA", "Main → onPause") }
+    override fun onStop() { super.onStop(); Log.d("VIDA", "Main → onStop") }
+    override fun onDestroy() { super.onDestroy(); Log.d("VIDA", "Main → onDestroy") }
 }
