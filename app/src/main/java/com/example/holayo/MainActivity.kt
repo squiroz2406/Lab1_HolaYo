@@ -88,5 +88,10 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onPause() { super.onPause(); Log.d("VIDA", "Main → onPause") }
     override fun onStop() { super.onStop(); Log.d("VIDA", "Main → onStop") }
+    //onRestart() se ejecuta solo cuando una Activity vuelve a primer plano después de haber pasado por onStop()
+    //Se llama justo antes de onStart(), pero únicamente en el camino "stop → start"
+    //orden completo: onCreate → onStart → onResume → onPause → onStop → onRestart → onStart → onResume
+    //Si la Activity nunca llegó a onStop(), jamás vas a ver onRestart().
+    override fun onRestart() { super.onRestart(); Log.d("VIDA", "Main → onRestart") } //agrego onRestart
     override fun onDestroy() { super.onDestroy(); Log.d("VIDA", "Main → onDestroy") }
 }
