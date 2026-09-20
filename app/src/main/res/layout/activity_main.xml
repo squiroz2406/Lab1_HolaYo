@@ -42,4 +42,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="@string/btn_ir_segunda" />
+    <Button
+        android:id="@+id/btnCompartir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Compartir mi perfil" />
 </LinearLayout>

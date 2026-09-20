@@ -24,10 +24,15 @@ class MainActivity : AppCompatActivity() {
     )
     private var saludoFormal = true
 
+    companion object {
+        private const val KEY_SALUDO_FORMAL = "saludoFormal"
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("VIDA", "Main → onCreate")
         setContentView(R.layout.activity_main)
+
+        saludoFormal = savedInstanceState?.getBoolean(KEY_SALUDO_FORMAL) ?: true
 
         val tvSaludo = findViewById<TextView>(R.id.tvSaludo)
         val tvDato = findViewById<TextView>(R.id.tvDato)
@@ -35,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         val tvBebida = findViewById<TextView>(R.id.tvBebida)
         val btnSaludar = findViewById<Button>(R.id.btnSaludar)
         val btnIrSegunda = findViewById<Button>(R.id.btnIrSegunda)
+        val btnCompartir = findViewById<Button>(R.id.btnCompartir)
+
         tvDato.text = perfil.dato
 
 
@@ -82,7 +89,32 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        btnCompartir.setOnClickListener {
+            val texto = buildString {
+                append("¡Hola! Soy ${perfil.nombre}")
+                perfil.apodo?.let { append(" (alias $it)") }
+                append(".\n")
+                append("${perfil.dato}.\n")
+                perfil.comida?.let { append("Mi comida favorita es $it.\n") }
+                perfil.bebida?.let { append("Mi bebida favorita es $it.\n") }
+            }
+
+            val intentCompartir = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, texto)
+            }
+
+            startActivity(Intent.createChooser(intentCompartir, "Compartir perfil con..."))
+        }
+
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(KEY_SALUDO_FORMAL, saludoFormal)
+        Log.d("VIDA", "Main → onSaveInstanceState (saludoFormal=$saludoFormal)")
+    }
+
     override fun onStart() { super.onStart(); Log.d("VIDA", "Main → onStart") }
     override fun onResume() { super.onResume(); Log.d("VIDA", "Main → onResume")
     }

@@ -4,4 +4,5 @@
     <string name="btn_ir_segunda">Ir a la sala de experimentos</string>
     <string name="btn_sumar">Sumar</string>
     <string name="hint_notas">Notas del experimento…</string>
+    <string name="btnCompartir">Compartir</string>
 </resources>

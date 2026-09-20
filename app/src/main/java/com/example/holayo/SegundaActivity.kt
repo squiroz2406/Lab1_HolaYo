@@ -11,19 +11,34 @@ import androidx.core.view.WindowInsetsCompat
 
 class SegundaActivity : AppCompatActivity() {
     private var contador = 0
+    private lateinit var tvContador: TextView
+
+    companion object {
+        private const val KEY_CONTADOR = "contador"
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("VIDA", "Segunda → onCreate")
         setContentView(R.layout.activity_segunda)
+
+        contador = savedInstanceState?.getInt(KEY_CONTADOR) ?: 0
+
         val nombre = intent.getStringExtra("nombre") ?: "misterioso visitante"
         findViewById<TextView>(R.id.tvBienvenida).text =
             "Sala de experimentos de $nombre"
-        val tvContador = findViewById<TextView>(R.id.tvContador)
+
+        tvContador = findViewById(R.id.tvContador)
         tvContador.text = contador.toString()
+
         findViewById<Button>(R.id.btnSumar).setOnClickListener {
             contador++
             tvContador.text = contador.toString()
         }
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_CONTADOR, contador)
+        Log.d("VIDA", "Segunda → onSaveInstanceState (contador=$contador)")
     }
     override fun onStart() { super.onStart(); Log.d("VIDA", "Segunda → onStart") }
     override fun onResume() { super.onResume(); Log.d("VIDA", "Segunda → onResume") }
