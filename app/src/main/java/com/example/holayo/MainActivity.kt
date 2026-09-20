@@ -1,4 +1,5 @@
 package com.example.holayo
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -11,8 +12,6 @@ data class Perfil(
     val apodo: String?,
     val comida: String?,
     val bebida: String?,
-
-// el ? declara: "puede no haber apodo" — y el compilador lo vigila
 )
 class MainActivity : AppCompatActivity() {
     private val perfil = Perfil(
@@ -67,6 +66,12 @@ class MainActivity : AppCompatActivity() {
             saludoFormal = !saludoFormal
             actualizarSaludo()
             mostrarDatosOpcionales()
+        }
+        val btnIrSegunda = findViewById<Button>(R.id.btnIrSegunda)
+        btnIrSegunda.setOnClickListener {
+            val intent = Intent(this, SegundaActivity::class.java)
+            intent.putExtra("nombre", perfil.apodo ?: perfil.nombre)
+            startActivity(intent)
         }
     }
 }

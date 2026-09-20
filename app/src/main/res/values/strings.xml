@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">HolaYo</string>
     <string name="btn_saludar">Saludar distinto</string>
+    <string name="btn_ir_segunda">Ir a la sala de experimentos</string>
 </resources>
